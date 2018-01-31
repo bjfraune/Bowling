@@ -24,6 +24,7 @@ public class ScoreSheet {
 				secondThrow(secondBall);
 				
 			}
+			System.out.println("Frame: "+ frame + "\nFirstBall: "+ byFrame[frame][0] + "SecondBall: "+ byFrame[frame][1]);
 			++frame;
 		// if first throw is 10, then dont do secondthrow
 			
@@ -101,7 +102,14 @@ public class ScoreSheet {
 			System.out.println("Total score:"+ getScore() +"\nEnd of Game");
 		}
 		
-
-	
+//		public static void main(String[] arg){
+//			for(int i = 1; i <= 11; ++i){
+//				Random rand = new Random();
+//				int firstBall = rand.nextInt(11);
+//				int secondBall = rand.nextInt(10-firstBall);
+//				nextFrame(firstBall, secondBall);
+//			}
+//		}
+//	
 	
 }
