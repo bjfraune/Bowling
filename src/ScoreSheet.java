@@ -16,23 +16,19 @@ public class ScoreSheet {
 			}
 			isFirstThrow = true;
 			pins = 10;
-			int first = firstThrow(firstBall);
+			firstThrow(firstBall);
 			
 			if (byFrame[frame][0] != 10)
 			{
 				isFirstThrow = false;
-				secondThrow(secondBall);
-				
+				secondThrow(secondBall);		
 			}
-			System.out.println("Frame: "+ frame + "\nFirstBall: "+ byFrame[frame][0] + "\nSecondBall: "+ byFrame[frame][1] + "\n\n");
-			++frame;
-		// if first throw is 10, then dont do secondthrow
 			
+			++frame;			
 		}
-		public int firstThrow(int pinsDown){
+		public void firstThrow(int pinsDown){
 			if(pinsDown > 10 || pinsDown < 0) throw new IllegalArgumentException("firstthrow invalid pinsDown");
-			byFrame[frame][0]= pinsDown;
-			return pinsDown;	
+			byFrame[frame][0]= pinsDown;	
 		}
 		
 		public void secondThrow(int pinsDown){
@@ -72,44 +68,39 @@ public class ScoreSheet {
 			// put in frame number [1, 10] and it will calculate the score for that frame
 			if(frameNumber < 0 && frameNumber >10) throw new IllegalArgumentException("getFrameScore() invalid frameNumber");
 			//
-			int getFrame = frameNumber - 1;	// adjustment since array starts at 0
+			int getFrame = frameNumber - 1;	// adjustment since array starts at 0, but frames start at 1
 			
 			int frameScore = 0;	// initialized to zero
 			
-			if(byFrame[getFrame][0] == 10){	
+			if(frameNumber == 10) {		// last frame, dont count the 11th frame (it doesn't exist)
+				frameScore = byFrame[9][0] + byFrame[9][1];
+			}
+			else if(byFrame[getFrame][0] == 10){	
 				// special case of a strike
 				if(byFrame[getFrame+1][0] == 10){
 					// 2 strikes in a row
-					frameScore+= 20 + byFrame[getFrame +2][0];
+					frameScore = 20 + byFrame[getFrame +2][0];
 				}
 				else{
-					frameScore += 10+ byFrame[getFrame+1][0] + byFrame[getFrame+1][1];
+					frameScore = 10 + (byFrame[getFrame+1][0] + byFrame[getFrame+1][1]);
 				}
 			}
 			else if(byFrame[getFrame][0] + byFrame[getFrame][1] == 10){	
 				// special case of a spare
-				frameScore += 10 + byFrame[getFrame+1][0];
+				frameScore = 10 + (byFrame[getFrame+1][0]);
 			}
 			else{
 				// everything else
-				frameScore+= byFrame[getFrame][0]+ byFrame[getFrame][1];
+				frameScore = byFrame[getFrame][0]+ byFrame[getFrame][1];
 			}
+			// for debugging
+			//System.out.println("\nFrameScore: "+frameScore);
 			return frameScore;
 			
 		}
 		
 		public void endOfGame(){
-			System.out.println("Total score:"+ getScore() +"\nEnd of Game");
+			System.out.println("Total score:"+ getScore() +"\nEnd of Game\nTo start a new game, open a new ScoreSheet");
 		}
-		
-//		public static void main(String[] arg){
-//			for(int i = 1; i <= 11; ++i){
-//				Random rand = new Random();
-//				int firstBall = rand.nextInt(11);
-//				int secondBall = rand.nextInt(10-firstBall);
-//				nextFrame(firstBall, secondBall);
-//			}
-//		}
-//	
-	
+			
 }
