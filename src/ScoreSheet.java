@@ -70,29 +70,29 @@ public class ScoreSheet {
 		
 		public int getFrameScore(int frameNumber){ 
 			// put in frame number [1, 10] and it will calculate the score for that frame
-			if(frameNumber > 0 && frameNumber <=10) throw new IllegalArgumentException("getFrameScore() invalid frameNumber");
+			if(frameNumber < 0 && frameNumber >10) throw new IllegalArgumentException("getFrameScore() invalid frameNumber");
 			
-			frameNumber --;	// adjustment since array starts at 0
+			int getFrame = frameNumber - 1;	// adjustment since array starts at 0
 			
 			int frameScore = 0;	// initialized to zero
 			
-			if(byFrame[frameNumber][0] == 10){	
+			if(byFrame[getFrame][0] == 10){	
 				// special case of a strike
-				if(byFrame[frameNumber+1][0] == 10){
+				if(byFrame[getFrame+1][0] == 10){
 					// 2 strikes in a row
-					frameScore+= 20 + byFrame[frameNumber +2][0];
+					frameScore+= 20 + byFrame[getFrame +2][0];
 				}
 				else{
-					frameScore += 10+ byFrame[frameNumber+1][0] + byFrame[frameNumber+1][1];
+					frameScore += 10+ byFrame[getFrame+1][0] + byFrame[getFrame+1][1];
 				}
 			}
-			else if(byFrame[frameNumber][0] + byFrame[frameNumber][1] == 10){	
+			else if(byFrame[getFrame][0] + byFrame[getFrame][1] == 10){	
 				// special case of a spare
-				frameScore += 10 + byFrame[frameNumber+1][0];
+				frameScore += 10 + byFrame[getFrame+1][0];
 			}
 			else{
 				// everything else
-				frameScore+= byFrame[frameNumber][0]+ byFrame[frameNumber][1];
+				frameScore+= byFrame[getFrame][0]+ byFrame[getFrame][1];
 			}
 			return frameScore;
 			
