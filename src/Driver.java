@@ -9,8 +9,17 @@ public class Driver {
 		
 		for(int i = 1; i <= 11; ++i){
 			Random rand = new Random();
-			int firstBall = rand.nextInt(11);
-			int secondBall = rand.nextInt(10-firstBall+1);
+			int secondBall;
+			
+			int firstBall = rand.nextInt(10) + 1;
+			if (firstBall == 10)
+			{
+				secondBall = 0;
+			}
+			else
+			{
+				secondBall = rand.nextInt(10-firstBall+1);
+			}
 			s1.nextFrame(firstBall, secondBall);
 		}
 	}

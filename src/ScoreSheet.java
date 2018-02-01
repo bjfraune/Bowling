@@ -16,7 +16,7 @@ public class ScoreSheet {
 			}
 			isFirstThrow = true;
 			pins = 10;
-			int first =firstThrow(firstBall);
+			int first = firstThrow(firstBall);
 			
 			if (byFrame[frame][0] != 10)
 			{
@@ -24,7 +24,7 @@ public class ScoreSheet {
 				secondThrow(secondBall);
 				
 			}
-			System.out.println("Frame: "+ frame + "\nFirstBall: "+ byFrame[frame][0] + "SecondBall: "+ byFrame[frame][1]);
+			System.out.println("Frame: "+ frame + "\nFirstBall: "+ byFrame[frame][0] + "\nSecondBall: "+ byFrame[frame][1] + "\n\n");
 			++frame;
 		// if first throw is 10, then dont do secondthrow
 			
