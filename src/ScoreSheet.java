@@ -71,7 +71,7 @@ public class ScoreSheet {
 		public int getFrameScore(int frameNumber){ 
 			// put in frame number [1, 10] and it will calculate the score for that frame
 			if(frameNumber < 0 && frameNumber >10) throw new IllegalArgumentException("getFrameScore() invalid frameNumber");
-			
+			//
 			int getFrame = frameNumber - 1;	// adjustment since array starts at 0
 			
 			int frameScore = 0;	// initialized to zero
