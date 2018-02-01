@@ -1,5 +1,3 @@
-import java.util.Random;
-
 public class ScoreSheet {
 
 		int[][] byFrame = new int[12][2];
